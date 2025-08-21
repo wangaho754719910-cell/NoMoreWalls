@@ -1,4 +1,4 @@
-# NoMoreWalls
+main# NoMoreWalls
 
 自动抓取部分不提供订阅的公开节点。
 
