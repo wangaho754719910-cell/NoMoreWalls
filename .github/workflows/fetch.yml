@@ -30,6 +30,11 @@ jobs:
         git pull origin master
         git add list*
         git commit -m "$(date '+%Y-%m-%d %H:%M:%S')抓取节点"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
     - name: 推送更改
       uses: ad-m/github-push-action@master
       with:
