@@ -1,4 +1,6 @@
-name: Fetch
+on:
+  push:
+    branches: [ master ]name: Fetch
 
 on:
   workflow_dispatch:
