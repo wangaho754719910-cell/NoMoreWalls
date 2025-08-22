@@ -1,3 +1,6 @@
+env:
+  PORT: 8080
+  NODE_ENV: production   # 新节点
 name: Auto Deploy Node.js & Python
 
 on:
