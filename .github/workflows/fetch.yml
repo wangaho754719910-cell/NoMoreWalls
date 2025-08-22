@@ -1,4 +1,55 @@
+yaml
+name: Auto Deploy Node.js & Python
+
 on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 设置 Node.js 环境
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Node.js dependencies
+      run: |
+        if [ -f package.json ]; then
+          npm install
+        fi
+
+    # 设置 Python 环境
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Python dependencies
+      run: |
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        fi
+
+    # 运行 Node.js 服务（请根据实际情况修改启动命令）
+    - name: Run Node.js app
+      if: ${{ hashFiles('package.json') != '' }}
+      run: |
+        nohup npm start &
+
+    # 运行 Python 服务（请根据实际情况修改启动命令）
+    - name: Run Python app
+      if: ${{ hashFiles('requirements.txt') != '' }}
+      run: |
+        nohup python app.py &on:
   push:
     branches: [ master ]name: Fetch
 
